@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { FaFolderOpen, FaCheckSquare, FaSquare, FaMicrochip, FaSpinner, FaExclamationTriangle, FaCode, FaSearch } from 'react-icons/fa';
+import { FaFolderOpen, FaCheckSquare, FaSquare, FaMicrochip, FaSpinner, FaExclamationTriangle, FaCode, FaSearch, FaRobot, FaTimes } from 'react-icons/fa';
+import AIConfigModal from '../components/AIConfigModal';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import axios from 'axios';
 
 const SECRET_PATTERNS = [
     { name: 'Google API Key', regex: /AIza[0-9A-Za-z-_]{35}/ },
@@ -13,7 +17,7 @@ const SECRET_PATTERNS = [
     { name: 'Generic Private Key', regex: /-----BEGIN PRIVATE KEY-----/ },
     { name: 'MongoDB Connection String', regex: /mongodb(\+srv)?:\/\/[^\s]+/ },
     { name: 'SQL Connection String', regex: /(postgres|mysql|mssql):\/\/[^\s]+/ },
-    { name: 'Azure Storage Key', regex: /[a-zA-Z0-9+/=]{88}/ } // Basic heuristic for Azure keys
+    { name: 'Azure Storage Key', regex: /[a-zA-Z0-9+/=]{88}/ }
 ];
 
 const ScanProjectPage = () => {
@@ -22,6 +26,11 @@ const ScanProjectPage = () => {
     const [progress, setProgress] = useState(0);
     const [results, setResults] = useState(null);
     const [scanStats, setScanStats] = useState({ filesScanned: 0, secretsFound: 0 });
+
+    // AI State
+    const [isAIModalOpen, setIsAIModalOpen] = useState(false);
+    const [aiExplanation, setAiExplanation] = useState(null);
+    const [explainingIssue, setExplainingIssue] = useState(null);
 
     const [exclusions, setExclusions] = useState({
         node_modules: true,
@@ -40,6 +49,7 @@ const ScanProjectPage = () => {
         setFiles(fileList);
         setResults(null);
         setScanStats({ filesScanned: 0, secretsFound: 0 });
+        setAiExplanation(null);
     };
 
     const isExcluded = (path) => {
@@ -73,8 +83,6 @@ const ScanProjectPage = () => {
             lines.forEach((line, index) => {
                 SECRET_PATTERNS.forEach(pattern => {
                     if (pattern.regex.test(line)) {
-                        // Avoid false positives (very basic) by checking content length if needed, 
-                        // but sticking to regex for now.
                         fileIssues.push({
                             type: pattern.name,
                             line: index + 1,
@@ -97,11 +105,11 @@ const ScanProjectPage = () => {
         setScanning(true);
         setProgress(0);
         setResults([]);
+        setAiExplanation(null);
 
         let foundIssues = [];
         let scannedCount = 0;
 
-        // Filter files based on exclusions
         const filesToScan = files.filter(f => !isExcluded(f.webkitRelativePath));
 
         if (filesToScan.length === 0) {
@@ -115,7 +123,6 @@ const ScanProjectPage = () => {
         for (let i = 0; i < total; i++) {
             const file = filesToScan[i];
 
-            // Checking if file is potentially binary to skip large binaries if exclusions.images is on
             if (exclusions.images && file.type.startsWith('image/')) {
                 // Skip
             } else if (isTextFile(file)) {
@@ -128,7 +135,6 @@ const ScanProjectPage = () => {
             scannedCount++;
             setProgress(Math.round((scannedCount / total) * 100));
 
-            // Allow UI update
             if (i % 10 === 0) await new Promise(r => setTimeout(r, 0));
         }
 
@@ -137,8 +143,56 @@ const ScanProjectPage = () => {
         setScanning(false);
     };
 
+    const handleExplainWithAI = async (issue, fileResult) => {
+        const storedConfig = localStorage.getItem('virusprotect_ai_config');
+        if (!storedConfig) {
+            setIsAIModalOpen(true);
+            return;
+        }
+
+        const config = JSON.parse(storedConfig);
+        if (!config.apiKey && config.provider !== 'ollama') {
+            setIsAIModalOpen(true);
+            return;
+        }
+
+        setExplainingIssue(issue);
+        setAiExplanation(null); // Clear previous
+
+        try {
+            const prompt = `I found a ${issue.type} in file ${fileResult.file} at line ${issue.line}. The code is: \`${issue.content}\`. Explain why this is dangerous and how to fix it properly.`;
+
+            const response = await axios.post('http://localhost:5000/api/explain', {
+                provider: config.provider,
+                model: config.model,
+                apiKey: config.apiKey,
+                prompt: prompt,
+                context: {
+                    file: fileResult.file,
+                    line: issue.line,
+                    snippet: issue.content,
+                    issueType: issue.type
+                }
+            });
+
+            setAiExplanation(response.data.result);
+
+        } catch (error) {
+            console.error("AI Explanation Failed", error);
+            setAiExplanation("Failed to get explanation. Please check your API key and connection.");
+        } finally {
+            setExplainingIssue(null); // Stop loading spinner
+        }
+    };
+
     return (
-        <div className="space-y-8 animate-matrix-fade text-white pb-20">
+        <div className="space-y-8 text-white pb-20">
+            <AIConfigModal
+                isOpen={isAIModalOpen}
+                onClose={() => setIsAIModalOpen(false)}
+                onConfigSave={(config) => console.log("Config saved", config)}
+            />
+
             <header>
                 <h2 className="text-3xl font-bold mb-2 flex items-center gap-3">
                     <FaCode className="text-neon-green" /> SECRECY SCANNER
@@ -160,7 +214,7 @@ const ScanProjectPage = () => {
                     />
                     <div className="absolute inset-0 bg-neon-green/5 pointer-events-none" />
 
-                    <FaFolderOpen className="text-6xl text-neon-green mb-4 animate-pulse" />
+                    <FaFolderOpen className="text-6xl text-neon-green mb-4 animate-float" />
                     <h3 className="text-2xl font-bold font-mono">
                         {files.length > 0 ? `${files.length} FILES LOADED` : "DRAG PROJECT FOLDER"}
                     </h3>
@@ -186,6 +240,13 @@ const ScanProjectPage = () => {
                             </div>
                         ))}
                     </div>
+
+                    <button
+                        onClick={() => setIsAIModalOpen(true)}
+                        className="mt-6 w-full py-2 border border-neon-green/50 text-neon-green rounded hover:bg-neon-green hover:text-black transition-all flex items-center justify-center gap-2 text-sm font-bold"
+                    >
+                        <FaRobot /> CONFIGURE AI
+                    </button>
                 </div>
             </div>
 
@@ -211,14 +272,33 @@ const ScanProjectPage = () => {
                             className="absolute top-0 left-0 h-full bg-neon-green shadow-[0_0_15px_#39ff14] transition-all duration-300"
                             style={{ width: `${progress}%` }}
                         ></div>
-                        {/* Matrix rain effect overlay could go here */}
+                    </div>
+                </div>
+            )}
+
+            {/* AI Explanation Result Modal/Panel */}
+            {aiExplanation && (
+                <div className="glass-panel border border-neon-green/50 p-6 rounded-xl animate-float relative">
+                    <button
+                        onClick={() => setAiExplanation(null)}
+                        className="absolute top-4 right-4 text-gray-500 hover:text-white"
+                    >
+                        <FaTimes />
+                    </button>
+                    <h3 className="text-xl font-bold text-neon-green mb-4 flex items-center gap-2">
+                        <FaRobot /> AI ANALYSIS REPORT
+                    </h3>
+                    <div className="prose prose-invert prose-green max-w-none">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                            {aiExplanation}
+                        </ReactMarkdown>
                     </div>
                 </div>
             )}
 
             {/* Results */}
             {results && (
-                <div className="space-y-6 animate-slide-up">
+                <div className="space-y-6">
                     <div className="flex items-center justify-between border-b border-gray-800 pb-4">
                         <h3 className="text-2xl font-bold text-white flex items-center gap-2">
                             SCAN REPORT
@@ -226,9 +306,11 @@ const ScanProjectPage = () => {
                                 {scanStats.secretsFound} SECRETS FOUND
                             </span>
                         </h3>
-                        <div className="text-xs text-gray-500 font-mono">
-                            SCANNED: {scanStats.filesScanned} FILES
-                        </div>
+                        {scanStats.secretsFound > 0 && (
+                            <span className="text-xs text-gray-400">
+                                Click "Analyze" to get AI fix suggestions.
+                            </span>
+                        )}
                     </div>
 
                     <div className="grid grid-cols-1 gap-6">
@@ -255,7 +337,16 @@ const ScanProjectPage = () => {
                                                     <span className="text-red-400 font-bold text-xs uppercase flex items-center gap-2">
                                                         <FaExclamationTriangle /> {issue.type}
                                                     </span>
-                                                    <span className="text-gray-500 text-xs font-mono">Line {issue.line}</span>
+                                                    <div className="flex items-center gap-3">
+                                                        <span className="text-gray-500 text-xs font-mono">Line {issue.line}</span>
+                                                        <button
+                                                            onClick={() => handleExplainWithAI(issue, fileResult)}
+                                                            className="text-xs bg-neon-green/10 text-neon-green border border-neon-green/50 px-3 py-1 rounded hover:bg-neon-green hover:text-black transition-colors flex items-center gap-2"
+                                                        >
+                                                            {explainingIssue === issue ? <FaSpinner className="animate-spin" /> : <FaRobot />}
+                                                            ANALYZE
+                                                        </button>
+                                                    </div>
                                                 </div>
                                                 <div className="font-mono bg-[#050505] p-2 rounded border border-gray-800 text-gray-300 overflow-x-auto whitespace-pre">
                                                     <code>

@@ -1,6 +1,7 @@
 import React from 'react';
+import { FaRobot } from 'react-icons/fa';
 
-const ScanResult = ({ result, onReset }) => {
+const ScanResult = ({ result, onReset, onAnalyze }) => {
     // Parsing the VT result structure
     const attributes = result.data.attributes;
     const stats = attributes.stats || attributes.last_analysis_stats; // Analysis object vs File object structure diff
@@ -18,7 +19,7 @@ const ScanResult = ({ result, onReset }) => {
     const isClean = score === 0;
 
     return (
-        <div className="w-full text-center space-y-6 animate-matrix-fade">
+        <div className="w-full text-center space-y-6">
 
             <div className={`text-5xl font-bold mb-2 ${isClean ? 'text-neon-green' : 'text-red-500'} text-glow`}>
                 {isClean ? 'SYSTEM CLEAN' : 'THREAT DETECTED'}
@@ -54,12 +55,22 @@ const ScanResult = ({ result, onReset }) => {
                 </div>
             </div>
 
-            <button
-                onClick={onReset}
-                className="mt-6 px-8 py-3 bg-neon-green text-black font-bold text-lg rounded hover:bg-white transition-all shadow-[0_0_15px_rgba(57,255,20,0.5)]"
-            >
-                SCAN ANOTHER FILE
-            </button>
+            <div className="flex justify-center gap-4 mt-6">
+                <button
+                    onClick={onReset}
+                    className="px-8 py-3 border border-gray-600 text-gray-300 font-bold text-lg rounded hover:bg-white hover:text-black transition-all"
+                >
+                    SCAN NEW FILE
+                </button>
+                {!isClean && (
+                    <button
+                        onClick={onAnalyze}
+                        className="px-8 py-3 bg-neon-green text-black font-bold text-lg rounded hover:bg-[#2ecc71] transition-all shadow-[0_0_15px_rgba(57,255,20,0.5)] flex items-center gap-2"
+                    >
+                        <FaRobot /> ANALYZE THREAT
+                    </button>
+                )}
+            </div>
 
             <div className="text-xs text-gray-600 mt-4">
                 MD5: {attributes.md5 || 'N/A'} <br />

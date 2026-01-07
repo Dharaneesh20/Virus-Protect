@@ -3,7 +3,7 @@ import { FaShieldAlt, FaBug, FaSkull, FaCheckCircle } from 'react-icons/fa';
 
 const DashboardHome = () => {
     return (
-        <div className="space-y-8 animate-matrix-fade">
+        <div className="space-y-8 ">
             <header>
                 <h2 className="text-3xl font-bold text-white mb-2">SECURITY OVERVIEW</h2>
                 <p className="text-gray-500">SYSTEM STATUS: <span className="text-neon-green">OPERATIONAL</span></p>

@@ -18,12 +18,19 @@ export default {
             },
             animation: {
                 'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                'matrix-fade': 'matrixFade 2s ease-in-out infinite',
+                'float': 'float 20s ease-in-out infinite',
+                'float-delayed': 'float 20s ease-in-out 10s infinite',
+                'drift': 'drift 40s linear infinite',
+                'drift-slow': 'drift 60s linear infinite reverse',
             },
             keyframes: {
-                matrixFade: {
-                    '0%, 100%': { opacity: '0.8' },
-                    '50%': { opacity: '0.4' },
+                float: {
+                    '0%, 100%': { transform: 'translateY(0) scale(1)' },
+                    '50%': { transform: 'translateY(-20px) scale(1.05)' },
+                },
+                drift: {
+                    '0%': { transform: 'rotate(0deg)' },
+                    '100%': { transform: 'rotate(360deg)' },
                 }
             }
         },
