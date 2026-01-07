@@ -1,7 +1,7 @@
 
 <div align="center">
 
-# 🛡️ VIRUSPROTECT - Sentinel System
+# VIRUSPROTECT - Sentinel System
 
 ![Status](https://img.shields.io/badge/Status-Online-brightgreen)
 ![CI](https://github.com/Dharaneesh20/Virus-Protect/actions/workflows/ci.yml/badge.svg)
@@ -10,7 +10,7 @@
 ![React Version](https://img.shields.io/badge/react-19.2.0-blue)
 ![Express Version](https://img.shields.io/badge/express-5.2.1-yellow)
 
-**VirusProtect** is a cutting-edge, full-stack security dashboard designed to scan files, analyze project secrecy leaks, and monitor web applications. It features a cyber-aesthetic UI inspired by "The Matrix" and integrates advanced AI models (Claude, Gemini, GPT-4, DeepSeek, Grok, Ollama) to explain threats and recommend fixes.
+**VirusProtect** is a cutting-edge, full-stack security dashboard designed to scan files, analyze project secrecy leaks, and monitor web applications. It integrates advanced AI models (Claude, Gemini, GPT-4, DeepSeek, Grok, Ollama) to explain threats and recommend fixes.
 
 [Features](#-key-features) • [Installation](#%EF%B8%8F-installation--setup) • [Usage](#-usage) • [Architecture](#%EF%B8%8F-architecture) • [Contributing](#-contributing)
 
@@ -18,7 +18,31 @@
 
 ---
 
-## 🚀 Key Features
+## 📸 Screenshots
+
+<div align="center">
+
+<img src="https://i.ibb.co/Rp3KcBNn/Screenshot-from-2026-01-08-00-15-23.png" alt="Dashboard Overview" width="800"/>
+
+<img src="https://i.ibb.co/twwwqzKP/Screenshot-from-2026-01-08-00-15-32.png" alt="File Scanning Interface" width="800"/>
+
+<img src="https://i.ibb.co/1GWv3YW7/Screenshot-from-2026-01-08-00-16-11.png" alt="Scan Results" width="800"/>
+
+<img src="https://i.ibb.co/JFmkrFrB/Screenshot-from-2026-01-08-00-16-16.png" alt="AI Threat Analysis" width="800"/>
+
+<img src="https://i.ibb.co/jPB98vqL/Screenshot-from-2026-01-08-00-17-01.png" alt="Secret Detection" width="800"/>
+
+<img src="https://i.ibb.co/JFF40cjF/Screenshot-from-2026-01-08-00-17-31.png" alt="Web Monitoring" width="800"/>
+
+<img src="https://i.ibb.co/zWrbGCrz/Screenshot-from-2026-01-08-00-17-38.png" alt="Security Analysis" width="800"/>
+
+<img src="https://i.ibb.co/r2DtN60c/Screenshot-from-2026-01-08-00-20-10.png" alt="Quarantine Management" width="800"/>
+
+</div>
+
+---
+
+##  Key Features
 
 ### 🛡️ Advanced Malware Scanning
 - **VirusTotal Integration**: Leverages 70+ antivirus engines for comprehensive threat detection
