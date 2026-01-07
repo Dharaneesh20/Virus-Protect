@@ -66,6 +66,12 @@
 
 ---
 
+## 🔐 Security Policy
+
+We take security seriously. If you discover a vulnerability, please read our [Security Policy](SECURITY.md) for reporting guidelines.
+
+---
+
 ## 🤝 Contributing
 
 **WE NEED YOU, CYBERSECURITY ENTHUSIASTS!**
@@ -90,7 +96,7 @@ VirusProtect is an open-source initiative, and we welcome contributions from the
 
 ## 📜 License
 
-This project is licensed under the MIT License - feel free to build, break, and secure the web!
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
