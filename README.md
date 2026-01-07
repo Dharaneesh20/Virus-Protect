@@ -1,95 +1,97 @@
-# VirusProtect - Advanced Security Suite
+# VIRUSPROTECT - Sentinel System
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-2.0.0-green.svg)
-![React](https://img.shields.io/badge/frontend-React_Vite-cyan.svg)
-![Node](https://img.shields.io/badge/backend-Node_Express-green.svg)
+![Status](https://img.shields.io/badge/Status-Online-brightgreen)
+![CI](https://github.com/Dharaneesh20/Virus-Protect/actions/workflows/ci.yml/badge.svg)
+![License](https://img.shields.io/badge/License-MIT-blue)
 
-**VirusProtect** is a futuristic, glassmorphism-styled security dashboard designed for developers and security enthusiasts. It provides a suite of tools to scan files, monitor web endpoints, and deeply analyze source code for hardcoded secrets.
+**VirusProtect** is a cutting-edge, MERN-stack based security dashboard designed to scan files, analyze project secrecy leaks, and monitor local web applications. It features a cyber-aesthetic UI inspired by "The Matrix" and integrates advanced AI models to explain threats and recommend fixes.
 
-## 🚀 Features
+---
 
-### 1. 🔐 **Secrecy Scanner (New Feature)**
-Scan your entire project directory for leaked API keys, tokens, and database connection strings without your code ever leaving your machine.
-- **Client-Side Scanning:** Uses advanced Regex patterns within the browser. zero data upload for maximum privacy.
-- **Supported Keys:** 
-  - Google API Keys (`AIza...`)
-  - AWS Access Keys (`AKIA...`)
-  - GitHub Tokens (`ghp...`)
-  - Stripe, OpenAI, Slack, Firebase, MongoDB, SQL, and more.
-- **Visual Reports:** Pinpoints exact file, line number, and code snippet where the secret was found.
+## 🚀 Key Features
 
-### 2. 🛡️ **File Malware Scan**
-- Upload individual files to check against global threat databases (integrated with VirusTotal API).
-- Real-time hash calculation and reputation check.
+### 🛡️ Malware Scanning (VirusTotal Integration)
+- **Hash-based File Scanning**: Checks file reputation against 70+ antivirus engines.
+- **Upload Analysis**: If a file hash is unknown, it's uploaded for deep scanning.
+- **AI Threat Explanation**: Uses top-tier LLMs to explain scan tags and threat classifications concisely.
 
-### 3. 🌐 **Web Monitor**
-- Monitor URL reputation and status.
-- Analyze security headers and SSL configuration.
+### 🕵️ Local Secrecy Scanner
+- **Regex-based Detection**: Scans project folders for leaked API keys (Google, AWS, Stripe, etc.).
+- **Batch Processing**: Handles multiple files simultaneously.
+- **AI Remediation**: Click "Analyze" on any leak to get an AI-generated fix (e.g., how to rotate keys or use `.env`).
 
-## 🛠️ Installation
+### 🌐 Web App Monitor
+- **Header Analysis**: Scans local or remote URLs for missing security headers (CSP, HSTS, X-Frame-Options).
+- **Reputation Check**: Verifies the URL against VirusTotal's malicious database.
+- **Recommendation Engine**: Generates specific Nginx/Express.js config snippets to harden your server.
 
-### Prerequisites
-- Node.js (v18+)
-- npm or yarn
+### 🧠 "Explain with AI"
+- **Multi-Provider Support**: Integrate your own API keys for **Anthropic (Claude 3.5)**, **Google DeepMind (Gemini 2.0/2.5)**, **OpenAI (GPT-4o)**, **DeepSeek**, **xAI (Grok)**, or local **Ollama** models.
+- **Secure Storage**: API keys are encrypted and stored in your browser's local storage.
+- **Actionable Advice**: AI responses are tuned to be concise, bulleted lists focused on "Risk" and "Fix".
 
-### Setup
+### 📂 Persistence & Quarantine
+- **History Log**: A full audit trail of all scan operations.
+- **Quarantine Zone**: Isolate malicious files and delete them permanently from a secure sandbox.
+- **Local DB**: A lightweight JSON database tracks everything locally without complex setup.
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/Dharaneesh20/VirusProtect.git
-    cd VirusProtect
-    ```
+---
 
-2.  **Install Dependencies:**
-    
-    *Client:*
-    ```bash
-    cd client
-    npm install
-    ```
+## 🛠️ Installation & Setup
 
-    *Server:*
-    ```bash
-    cd ../server
-    npm install
-    ```
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/Dharaneesh20/Virus-Protect.git
+   cd Virus-Protect
+   ```
 
-3.  **Environment Variables:**
-    Create a `.env` file in the `server` directory:
-    ```env
-    PORT=5000
-    VIRUSTOTAL_API_KEY=your_key_here
-    ```
+2. **Backend Setup**
+   ```bash
+   cd server
+   npm install
+   # Create a .env file with your VirusTotal API Key
+   echo "VT_API_KEY=your_key_here" > .env
+   npm start
+   ```
 
-## 💻 Usage
+3. **Frontend Setup**
+   ```bash
+   cd ../client
+   npm install
+   npm run dev
+   ```
 
-1.  **Start the Backend:**
-    ```bash
-    cd server
-    npm start
-    ```
+4. **Access the Dashboard**
+   Open `http://localhost:5173` in your browser.
 
-2.  **Start the Frontend:**
-    ```bash
-    cd client
-    npm run dev
-    ```
+---
 
-3.  **Access the Dashboard:**
-    Open `http://localhost:5173` in your browser.
+## 🤝 Contributing
 
-## 🌿 Branches
+**WE NEED YOU, CYBERSECURITY ENTHUSIASTS!**
 
-- **`main`**: Stable release branch.
-- **`feature-drop`**: Cutting-edge features (currently including the new Secrecy Scanner).
+VirusProtect is an open-source initiative, and we welcome contributions from the community to make it the ultimate local security tool.
 
-## 👤 Author
+**How to Contribute:**
+1.  **Fork** the repository on GitHub: [https://github.com/Dharaneesh20/Virus-Protect](https://github.com/Dharaneesh20/Virus-Protect.git)
+2.  **Clone** your fork.
+3.  **Create a Branch** (`git checkout -b feature/amazing-new-scanner`).
+4.  **Commit** your changes.
+5.  **Push** to your fork.
+6.  **Open a Pull Request**.
 
-**Dharaneesh20**
-- GitHub: [Dharaneesh20](https://github.com/Dharaneesh20)
-- Email: dharaneeshrs777@gmail.com
+**Ideas for Contribution:**
+- Add more regex patterns for secret detection.
+- Integrate more AI providers.
+- Add a "Network Traffic Analyzer" module.
+- Improve the quarantine file encryption.
 
-## 📄 License
+---
 
-This project is licensed under the MIT License.
+## 📜 License
+
+This project is licensed under the MIT License - feel free to build, break, and secure the web!
+
+---
+
+*Built with React, Express, Node.js, and Paranoia.*
