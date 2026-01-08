@@ -1,7 +1,7 @@
 
 <div align="center">
 
-# 🛡️ VIRUSPROTECT - Sentinel System
+# VIRUSPROTECT - Sentinel System
 
 ![Status](https://img.shields.io/badge/Status-Online-brightgreen)
 ![CI](https://github.com/Dharaneesh20/Virus-Protect/actions/workflows/ci.yml/badge.svg)
@@ -10,7 +10,7 @@
 ![React Version](https://img.shields.io/badge/react-19.2.0-blue)
 ![Express Version](https://img.shields.io/badge/express-5.2.1-yellow)
 
-**VirusProtect** is a cutting-edge, full-stack security dashboard designed to scan files, analyze project secrecy leaks, and monitor web applications. It features a cyber-aesthetic UI inspired by "The Matrix" and integrates advanced AI models (Claude, Gemini, GPT-4, DeepSeek, Grok, Ollama) to explain threats and recommend fixes.
+**VirusProtect** is a cutting-edge, full-stack security dashboard designed to scan files, analyze project secrecy leaks, and monitor web applications. It integrates advanced AI models (Claude, Gemini, GPT-4, DeepSeek, Grok, Ollama) to explain threats and recommend fixes.
 
 [Features](#-key-features) • [Installation](#%EF%B8%8F-installation--setup) • [Usage](#-usage) • [Architecture](#%EF%B8%8F-architecture) • [Contributing](#-contributing)
 
@@ -18,7 +18,56 @@
 
 ---
 
-## 🚀 Key Features
+## 📸 Screenshots
+
+<div align="center">
+<table>
+<tr>
+<td width="50%">
+<img src="https://i.ibb.co/Rp3KcBNn/Screenshot-from-2026-01-08-00-15-23.png" alt="Dashboard Overview" width="100%"/>
+<p><b>Dashboard Overview</b></p>
+</td>
+<td width="50%">
+<img src="https://i.ibb.co/twwwqzKP/Screenshot-from-2026-01-08-00-15-32.png" alt="File Scanning Interface" width="100%"/>
+<p><b>File Scanning Interface</b></p>
+</td>
+</tr>
+<tr>
+<td width="50%">
+<img src="https://i.ibb.co/1GWv3YW7/Screenshot-from-2026-01-08-00-16-11.png" alt="Scan Results" width="100%"/>
+<p><b>Scan Results</b></p>
+</td>
+<td width="50%">
+<img src="https://i.ibb.co/JFmkrFrB/Screenshot-from-2026-01-08-00-16-16.png" alt="AI Threat Analysis" width="100%"/>
+<p><b>AI Threat Analysis</b></p>
+</td>
+</tr>
+<tr>
+<td width="50%">
+<img src="https://i.ibb.co/jPB98vqL/Screenshot-from-2026-01-08-00-17-01.png" alt="Secret Detection" width="100%"/>
+<p><b>Secret Detection</b></p>
+</td>
+<td width="50%">
+<img src="https://i.ibb.co/JFF40cjF/Screenshot-from-2026-01-08-00-17-31.png" alt="Web Monitoring" width="100%"/>
+<p><b>Web Monitoring</b></p>
+</td>
+</tr>
+<tr>
+<td width="50%">
+<img src="https://i.ibb.co/zWrbGCrz/Screenshot-from-2026-01-08-00-17-38.png" alt="Security Analysis" width="100%"/>
+<p><b>Security Analysis</b></p>
+</td>
+<td width="50%">
+<img src="https://i.ibb.co/r2DtN60c/Screenshot-from-2026-01-08-00-20-10.png" alt="Quarantine Management" width="100%"/>
+<p><b>Quarantine Management</b></p>
+</td>
+</tr>
+</table>
+</div>
+
+---
+
+##  Key Features
 
 ### 🛡️ Advanced Malware Scanning
 - **VirusTotal Integration**: Leverages 70+ antivirus engines for comprehensive threat detection
@@ -112,6 +161,35 @@ Virus-Protect/
 ├── LICENSE
 └── README.md
 ```
+👥 Collaborators
+This project is made possible by these amazing contributors:
+<div align="center">
+<table>
+<tr>
+    <td align="center">
+        <a href="https://github.com/Dharaneesh20">
+            <img src="https://github.com/Dharaneesh20.png" width="100px;" alt="Dharaneesh20"/>
+            <br />
+            <sub><b>Dharaneesh20</b></sub>
+        </a>
+        <br />
+        <sub>Project Lead & Core Developer</sub>
+    </td>
+    <!-- Add more collaborators here -->
+    <!-- Example template:
+    <td align="center">
+        <a href="https://github.com/USERNAME">
+            <img src="https://github.com/USERNAME.png" width="100px;" alt="USERNAME"/>
+            <br />
+            <sub><b>Display Name</b></sub>
+        </a>
+        <br />
+        <sub>Role/Contribution</sub>
+    </td>
+    -->
+</tr>
+</table>
+</div>
 
 ---
 
@@ -308,48 +386,6 @@ VirusProtect is an open-source initiative, and we welcome contributions from the
    git push origin feature/amazing-security-feature
    ```
 6. **Open a Pull Request** on the main repository
-
-### Contribution Ideas
-
-**High Priority:**
-- 🔍 Add more regex patterns for secret detection (Azure, GitHub tokens, JWT)
-- 🧪 Implement unit and integration tests
-- 🐳 Create Docker/Docker Compose setup
-- 📊 Add vulnerability severity scoring system
-- 🔐 Implement file encryption for quarantined items
-
-**Medium Priority:**
-- 🌐 Network traffic analyzer module
-- 📱 Progressive Web App (PWA) support
-- 🔔 Real-time notifications for scan results
-- 📈 Analytics dashboard with charts
-- 🗄️ PostgreSQL/MongoDB support option
-
-**Enhancement Ideas:**
-- Support for scanning compressed archives (ZIP, TAR)
-- Integration with more threat intelligence APIs
-- Dark/Light theme toggle
-- Export reports as PDF
-- Multi-language support
-
-### Code Style Guidelines
-- Use ESLint configuration provided
-- Follow React best practices
-- Write descriptive commit messages
-- Add comments for complex logic
-- Update documentation for new features
-
----
-
-## 📊 Project Stats
-
-- **Language:** JavaScript (React + Node.js)
-- **Frontend Framework:** React 19.2 + Vite
-- **Backend:** Express.js 5.2
-- **Database:** JSON-based (local)
-- **CI/CD:** GitHub Actions
-- **License:** MIT
-- **Active Development:** ✅ Yes
 
 ---
 
