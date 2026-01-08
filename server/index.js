@@ -15,8 +15,10 @@ try {
     cron = require('node-cron');
     moment = require('moment');
     fsExtra = require('fs-extra');
+    console.log('Report generation dependencies loaded successfully');
 } catch (e) {
-    console.log('Report generation dependencies not installed. Run: npm install pdfkit node-cron moment fs-extra');
+    console.log('Report generation dependencies not installed. Some features will be limited.');
+    console.log('Run: npm install pdfkit node-cron moment fs-extra');
 }
 
 const app = express();
@@ -115,13 +117,13 @@ if (!fs.existsSync(REPORTS_DIR)) fs.mkdirSync(REPORTS_DIR);
 
 const generateSecurityReport = (data, type = 'daily') => {
     const db = readDB();
-    const now = moment ? moment() : new Date();
+    const now = moment || { format: () => new Date().toISOString().split('T')[0] };
     const reportData = {
-        generatedAt: now.toISOString(),
+        generatedAt: new Date().toISOString(),
         type: type,
-        period: type === 'daily' ? now.format('YYYY-MM-DD') : 
-                type === 'weekly' ? `${now.startOf('week').format('YYYY-MM-DD')} to ${now.endOf('week').format('YYYY-MM-DD')}` :
-                now.format('YYYY-MM'),
+        period: type === 'daily' ? (moment ? moment().format('YYYY-MM-DD') : new Date().toISOString().split('T')[0]) : 
+                type === 'weekly' ? 'Current Week' :
+                'Current Month',
         summary: {
             totalScans: db.history.length,
             threatsFound: db.history.filter(h => h.status === 'THREAT').length,
@@ -217,13 +219,16 @@ const generateCSVReport = (reportData) => {
 };
 
 const saveReport = async (reportData, format = 'json') => {
-    const timestamp = moment ? moment().format('YYYY-MM-DD_HH-mm-ss') : new Date().toISOString().replace(/[:.]/g, '-');
+    const timestamp = moment ? moment().format('YYYY-MM-DD_HH-mm-ss') : new Date().toISOString().replace(/[:.]/g, '-').replace('T', '_').split('.')[0];
     const filename = `security-report-${reportData.type}-${timestamp}.${format}`;
     const filepath = path.join(REPORTS_DIR, filename);
 
     let content;
     switch (format) {
         case 'pdf':
+            if (!PDFDocument) {
+                throw new Error('PDF generation requires pdfkit. Run: npm install pdfkit');
+            }
             content = await generatePDFReport(reportData);
             break;
         case 'csv':
@@ -690,7 +695,7 @@ if (cron) {
     
     console.log('Automated report scheduling enabled');
 } else {
-    console.log('Node-cron not installed. Automated reports disabled. Run: npm install node-cron');
+    console.log('Node-cron not installed. Automated reports disabled. Install with: npm install node-cron');
 }
 
 app.listen(port, () => {
