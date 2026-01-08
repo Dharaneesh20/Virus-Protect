@@ -1,0 +1,854 @@
+{
+  "history": [
+    {
+      "id": "b0bd25fc-df0b-46f5-b648-040e5079d40d",
+      "timestamp": "2026-01-07T17:40:37.181Z",
+      "type": "FILE_SCAN",
+      "target": "eicar_test_file.txt",
+      "status": "THREAT",
+      "details": "60 engines detected malicious activity",
+      "hash": "131f95c51cc819465fa1797f6ccacf9d494aaaff46fa3eac73ae63ffbdfd8267",
+      "result": {
+        "data": {
+          "id": "131f95c51cc819465fa1797f6ccacf9d494aaaff46fa3eac73ae63ffbdfd8267",
+          "type": "file",
+          "links": {
+            "self": "https://www.virustotal.com/api/v3/files/131f95c51cc819465fa1797f6ccacf9d494aaaff46fa3eac73ae63ffbdfd8267"
+          },
+          "attributes": {
+            "crowdsourced_ids_stats": {
+              "high": 0,
+              "medium": 0,
+              "low": 1,
+              "info": 0
+            },
+            "sandbox_verdicts": {
+              "Zenbox": {
+                "category": "malicious",
+                "confidence": 56,
+                "sandbox_name": "Zenbox",
+                "malware_classification": [
+                  "MALWARE",
+                  "TROJAN"
+                ],
+                "malware_names": [
+                  "EICAR"
+                ]
+              },
+              "Lastline": {
+                "category": "malicious",
+                "sandbox_name": "Lastline",
+                "malware_classification": [
+                  "MALWARE",
+                  "TROJAN"
+                ]
+              }
+            },
+            "sha256": "131f95c51cc819465fa1797f6ccacf9d494aaaff46fa3eac73ae63ffbdfd8267",
+            "type_tag": "powershell",
+            "popular_threat_classification": {
+              "popular_threat_name": [
+                {
+                  "count": 55,
+                  "value": "eicar"
+                },
+                {
+                  "count": 43,
+                  "value": "test"
+                },
+                {
+                  "count": 30,
+                  "value": "file"
+                }
+              ],
+              "suggested_threat_label": "virus.eicar/test",
+              "popular_threat_category": [
+                {
+                  "count": 16,
+                  "value": "virus"
+                }
+              ]
+            },
+            "tags": [
+              "powershell",
+              "idle",
+              "attachment",
+              "long-sleeps",
+              "known-distributor",
+              "via-tor"
+            ],
+            "md5": "69630e4574ec6798239b091cda43dca0",
+            "reputation": 225,
+            "names": [
+              "eicar.lp",
+              "file.txt",
+              "eicar.txt",
+              "eicar.com",
+              "eicar[1].com",
+              "test6.txt",
+              "malicioso2.apk.txt",
+              "malicioso1.exe.txt",
+              "eicar_test (1).txt",
+              "test.exe",
+              "eicar",
+              "a.txt",
+              "eicar.txt2",
+              "eicar.pdf",
+              "ApplicationCostMonitoring",
+              "eicar.jpg",
+              "text.txt",
+              "test.txt",
+              "nonvirus.test",
+              "test.com",
+              "malware.com",
+              "ACloudGuru_serverless-framework-video-example",
+              "aaryapack_vercel-website",
+              "eicar_test.com",
+              "untitled.txt",
+              "adamgoossens_helms-deep",
+              "179669a2-5513-4ecd-8fb6-964148ccc6e5",
+              "x8dEC-eicar.pdf",
+              "eicar-perfect.exe",
+              "573462273_Unicom"
+            ],
+            "trid": [
+              {
+                "file_type": "EICAR antivirus test file",
+                "probability": 100
+              }
+            ],
+            "size": 69,
+            "type_tags": [
+              "source",
+              "powershell",
+              "ps",
+              "ps1"
+            ],
+            "last_analysis_stats": {
+              "malicious": 60,
+              "suspicious": 0,
+              "undetected": 7,
+              "harmless": 0,
+              "timeout": 0,
+              "confirmed-timeout": 0,
+              "failure": 0,
+              "type-unsupported": 8
+            },
+            "type_description": "Powershell",
+            "last_modification_date": 1767804940,
+            "last_submission_date": 1767804939,
+            "type_extension": "ps1",
+            "filecondis": {
+              "raw_md5": "bf509847c89cfdc6917b7cb7dc1f5cb8",
+              "dhash": "9300009100008090"
+            },
+            "magika": "POWERSHELL",
+            "magic": "EICAR virus test files",
+            "known_distributors": {
+              "distributors": [
+                "ActiveState Corporation"
+              ],
+              "filenames": [
+                "eicar.com"
+              ],
+              "products": [
+                "Active CD"
+              ],
+              "data_sources": [
+                "National Software Reference Library (NSRL)"
+              ]
+            },
+            "meaningful_name": "eicar.lp",
+            "last_analysis_date": 1767804413,
+            "times_submitted": 37065,
+            "last_analysis_results": {
+              "Bkav": {
+                "method": "blacklist",
+                "engine_name": "Bkav",
+                "engine_version": "2.0.0.1",
+                "engine_update": "20260107",
+                "category": "undetected",
+                "result": null
+              },
+              "Lionic": {
+                "method": "blacklist",
+                "engine_name": "Lionic",
+                "engine_version": "8.16",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "Test.Script.EICAR.y!c"
+              },
+              "Elastic": {
+                "method": "blacklist",
+                "engine_name": "Elastic",
+                "engine_version": "4.0.242",
+                "engine_update": "20251219",
+                "category": "malicious",
+                "result": "eicar"
+              },
+              "MicroWorld-eScan": {
+                "method": "blacklist",
+                "engine_name": "MicroWorld-eScan",
+                "engine_version": "14.0.409.0",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR-Test-File"
+              },
+              "ClamAV": {
+                "method": "blacklist",
+                "engine_name": "ClamAV",
+                "engine_version": "1.5.1.0",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "Eicar-Signature"
+              },
+              "CTX": {
+                "method": "blacklist",
+                "engine_name": "CTX",
+                "engine_version": "2024.8.29.1",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "txt.virus.eicar"
+              },
+              "CAT-QuickHeal": {
+                "method": "blacklist",
+                "engine_name": "CAT-QuickHeal",
+                "engine_version": "22.00",
+                "engine_update": "20260106",
+                "category": "malicious",
+                "result": "EICAR.TestFile"
+              },
+              "Skyhigh": {
+                "method": "blacklist",
+                "engine_name": "Skyhigh",
+                "engine_version": "v2021.2.0+4045",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR-TestFile"
+              },
+              "ALYac": {
+                "method": "blacklist",
+                "engine_name": "ALYac",
+                "engine_version": "2.0.0.10",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "Misc.Eicar-Test-File"
+              },
+              "Malwarebytes": {
+                "method": "blacklist",
+                "engine_name": "Malwarebytes",
+                "engine_version": "3.1.0.185",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR-AV-Test"
+              },
+              "Zillya": {
+                "method": "blacklist",
+                "engine_name": "Zillya",
+                "engine_version": "2.0.0.5519",
+                "engine_update": "20260106",
+                "category": "malicious",
+                "result": "EICAR.TestFile"
+              },
+              "Sangfor": {
+                "method": "blacklist",
+                "engine_name": "Sangfor",
+                "engine_version": "2.22.3.0",
+                "engine_update": "20260105",
+                "category": "malicious",
+                "result": "EICAR-Test-File (not a virus)"
+              },
+              "K7AntiVirus": {
+                "method": "blacklist",
+                "engine_name": "K7AntiVirus",
+                "engine_version": "14.28.58220",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR_Test_File"
+              },
+              "BitDefender": {
+                "method": "blacklist",
+                "engine_name": "BitDefender",
+                "engine_version": "7.2",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR-Test-File (not a virus)"
+              },
+              "K7GW": {
+                "method": "blacklist",
+                "engine_name": "K7GW",
+                "engine_version": "14.28.58222",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR_Test_File"
+              },
+              "CrowdStrike": {
+                "method": "blacklist",
+                "engine_name": "CrowdStrike",
+                "engine_version": "1.0",
+                "engine_update": "20230417",
+                "category": "undetected",
+                "result": null
+              },
+              "Baidu": {
+                "method": "blacklist",
+                "engine_name": "Baidu",
+                "engine_version": "1.0.0.2",
+                "engine_update": "20190318",
+                "category": "malicious",
+                "result": "Win32.Test.Eicar.a"
+              },
+              "VirIT": {
+                "method": "blacklist",
+                "engine_name": "VirIT",
+                "engine_version": "9.5.1118",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR-Test-File"
+              },
+              "Symantec": {
+                "method": "blacklist",
+                "engine_name": "Symantec",
+                "engine_version": "1.22.0.0",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR Test String"
+              },
+              "ESET-NOD32": {
+                "method": "blacklist",
+                "engine_name": "ESET-NOD32",
+                "engine_version": "18.2.18.0",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "Eicar test file"
+              },
+              "Zoner": {
+                "method": "blacklist",
+                "engine_name": "Zoner",
+                "engine_version": "2.2.2.0",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR.Test.File-NoVirus.250"
+              },
+              "TrendMicro-HouseCall": {
+                "method": "blacklist",
+                "engine_name": "TrendMicro-HouseCall",
+                "engine_version": "24.550.0.1002",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "Eicar_test_file"
+              },
+              "Avast": {
+                "method": "blacklist",
+                "engine_name": "Avast",
+                "engine_version": "23.9.8494.0",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR Test-NOT virus!!!"
+              },
+              "Cynet": {
+                "method": "blacklist",
+                "engine_name": "Cynet",
+                "engine_version": "4.0.3.4",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "Malicious (score: 99)"
+              },
+              "Kaspersky": {
+                "method": "blacklist",
+                "engine_name": "Kaspersky",
+                "engine_version": "22.0.1.28",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR-Test-File"
+              },
+              "Alibaba": {
+                "method": "blacklist",
+                "engine_name": "Alibaba",
+                "engine_version": "0.3.0.5",
+                "engine_update": "20190527",
+                "category": "malicious",
+                "result": "Virus:Win32/EICAR.A"
+              },
+              "ViRobot": {
+                "method": "blacklist",
+                "engine_name": "ViRobot",
+                "engine_version": "2014.3.20.0",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR-test"
+              },
+              "Rising": {
+                "method": "blacklist",
+                "engine_name": "Rising",
+                "engine_version": "25.0.0.28",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "Virus.EICARTestFile!1.103DB (CLASSIC)"
+              },
+              "Sophos": {
+                "method": "blacklist",
+                "engine_name": "Sophos",
+                "engine_version": "3.3.1.0",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR-AV-Test"
+              },
+              "F-Secure": {
+                "method": "blacklist",
+                "engine_name": "F-Secure",
+                "engine_version": "18.10.1547.307",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR_Test_File"
+              },
+              "DrWeb": {
+                "method": "blacklist",
+                "engine_name": "DrWeb",
+                "engine_version": "7.0.72.9030",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR Test File (NOT a Virus!)"
+              },
+              "VIPRE": {
+                "method": "blacklist",
+                "engine_name": "VIPRE",
+                "engine_version": "6.0.0.35",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR-Test-File (not a virus)"
+              },
+              "TrendMicro": {
+                "method": "blacklist",
+                "engine_name": "TrendMicro",
+                "engine_version": "24.550.0.1002",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "Eicar_test_file"
+              },
+              "McAfeeD": {
+                "method": "blacklist",
+                "engine_name": "McAfeeD",
+                "engine_version": "1.2.0.10275",
+                "engine_update": "20260107",
+                "category": "undetected",
+                "result": null
+              },
+              "CMC": {
+                "method": "blacklist",
+                "engine_name": "CMC",
+                "engine_version": "2.4.2022.1",
+                "engine_update": "20260101",
+                "category": "undetected",
+                "result": null
+              },
+              "Emsisoft": {
+                "method": "blacklist",
+                "engine_name": "Emsisoft",
+                "engine_version": "2024.8.0.61147",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR-Test-File (not a virus) (B)"
+              },
+              "SentinelOne": {
+                "method": "blacklist",
+                "engine_name": "SentinelOne",
+                "engine_version": "7.5.3.1",
+                "engine_update": "20251224",
+                "category": "malicious",
+                "result": "Static AI - Malicious COM"
+              },
+              "GData": {
+                "method": "blacklist",
+                "engine_name": "GData",
+                "engine_version": "GD:27.43099AVA:64.30457",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR_TEST_FILE"
+              },
+              "Jiangmin": {
+                "method": "blacklist",
+                "engine_name": "Jiangmin",
+                "engine_version": "16.0.100",
+                "engine_update": "20260106",
+                "category": "malicious",
+                "result": "EICAR-Test-File"
+              },
+              "Webroot": {
+                "method": "blacklist",
+                "engine_name": "Webroot",
+                "engine_version": "1.9.0.8",
+                "engine_update": "20250227",
+                "category": "malicious",
+                "result": "W32.Eicar.Testvirus.Gen"
+              },
+              "Varist": {
+                "method": "blacklist",
+                "engine_name": "Varist",
+                "engine_version": "6.6.1.3",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR_Test_File"
+              },
+              "Avira": {
+                "method": "blacklist",
+                "engine_name": "Avira",
+                "engine_version": "8.3.3.24",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "Eicar-Test-Signature"
+              },
+              "Antiy-AVL": {
+                "method": "blacklist",
+                "engine_name": "Antiy-AVL",
+                "engine_version": "3.0",
+                "engine_update": "20260107",
+                "category": "undetected",
+                "result": null
+              },
+              "Kingsoft": {
+                "method": "blacklist",
+                "engine_name": "Kingsoft",
+                "engine_version": "None",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR.Test.File.a"
+              },
+              "Microsoft": {
+                "method": "blacklist",
+                "engine_name": "Microsoft",
+                "engine_version": "1.1.25110.1",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "Virus:DOS/EICAR_Test_File"
+              },
+              "Gridinsoft": {
+                "method": "blacklist",
+                "engine_name": "Gridinsoft",
+                "engine_version": "1.0.231.174",
+                "engine_update": "20260107",
+                "category": "undetected",
+                "result": null
+              },
+              "Xcitium": {
+                "method": "blacklist",
+                "engine_name": "Xcitium",
+                "engine_version": "38315",
+                "engine_update": "20260106",
+                "category": "malicious",
+                "result": "Malware@#xgi4rmucsjhj"
+              },
+              "Arcabit": {
+                "method": "blacklist",
+                "engine_name": "Arcabit",
+                "engine_version": "2025.0.0.23",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR-Test-File (not a virus)"
+              },
+              "SUPERAntiSpyware": {
+                "method": "blacklist",
+                "engine_name": "SUPERAntiSpyware",
+                "engine_version": "5.6.0.1032",
+                "engine_update": "20260106",
+                "category": "malicious",
+                "result": "NotAThreat.EICAR[TestFile]"
+              },
+              "ZoneAlarm": {
+                "method": "blacklist",
+                "engine_name": "ZoneAlarm",
+                "engine_version": "6.21-110947477",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR-AV-Test"
+              },
+              "Avast-Mobile": {
+                "method": "blacklist",
+                "engine_name": "Avast-Mobile",
+                "engine_version": "260107-00",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "Eicar"
+              },
+              "Google": {
+                "method": "blacklist",
+                "engine_name": "Google",
+                "engine_version": "1767798065",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "Detected"
+              },
+              "AhnLab-V3": {
+                "method": "blacklist",
+                "engine_name": "AhnLab-V3",
+                "engine_version": "3.29.1.10604",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "Virus/EICAR_Test_File"
+              },
+              "Acronis": {
+                "method": "blacklist",
+                "engine_name": "Acronis",
+                "engine_version": "1.2.0.121",
+                "engine_update": "20240328",
+                "category": "undetected",
+                "result": null
+              },
+              "VBA32": {
+                "method": "blacklist",
+                "engine_name": "VBA32",
+                "engine_version": "5.5.0",
+                "engine_update": "20260106",
+                "category": "malicious",
+                "result": "EICAR-Test-File"
+              },
+              "TACHYON": {
+                "method": "blacklist",
+                "engine_name": "TACHYON",
+                "engine_version": "2026-01-07.02",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR-Test-File"
+              },
+              "Ikarus": {
+                "method": "blacklist",
+                "engine_name": "Ikarus",
+                "engine_version": "6.4.16.0",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR-Test-File"
+              },
+              "APEX": {
+                "method": "blacklist",
+                "engine_name": "APEX",
+                "engine_version": "6.734",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR Anti-Virus Test File"
+              },
+              "Tencent": {
+                "method": "blacklist",
+                "engine_name": "Tencent",
+                "engine_version": "1.0.0.1",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR.TEST.NOT-A-VIRUS"
+              },
+              "Yandex": {
+                "method": "blacklist",
+                "engine_name": "Yandex",
+                "engine_version": "5.5.2.24",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR_test_file"
+              },
+              "TrellixENS": {
+                "method": "blacklist",
+                "engine_name": "TrellixENS",
+                "engine_version": "6.0.6.653",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR-TestFile"
+              },
+              "huorong": {
+                "method": "blacklist",
+                "engine_name": "huorong",
+                "engine_version": "7069c1b:7069c1b:9edbef9:9edbef9",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "TEST/AVEngTestFile!EICAR"
+              },
+              "MaxSecure": {
+                "method": "blacklist",
+                "engine_name": "MaxSecure",
+                "engine_version": "1.0.0.1",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "VIRUS.EICAR.TEST"
+              },
+              "Fortinet": {
+                "method": "blacklist",
+                "engine_name": "Fortinet",
+                "engine_version": "7.0.30.0",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR_TEST_FILE"
+              },
+              "AVG": {
+                "method": "blacklist",
+                "engine_name": "AVG",
+                "engine_version": "23.9.8494.0",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR Test-NOT virus!!!"
+              },
+              "Panda": {
+                "method": "blacklist",
+                "engine_name": "Panda",
+                "engine_version": "4.6.4.2",
+                "engine_update": "20260107",
+                "category": "malicious",
+                "result": "EICAR-AV-TEST-FILE"
+              },
+              "alibabacloud": {
+                "method": "blacklist",
+                "engine_name": "alibabacloud",
+                "engine_version": "2.2.0",
+                "engine_update": "20250321",
+                "category": "malicious",
+                "result": "Engtest:Multi/Eicar"
+              },
+              "SymantecMobileInsight": {
+                "method": "blacklist",
+                "engine_name": "SymantecMobileInsight",
+                "engine_version": "2.0",
+                "engine_update": "20250124",
+                "category": "type-unsupported",
+                "result": null
+              },
+              "BitDefenderFalx": {
+                "method": "blacklist",
+                "engine_name": "BitDefenderFalx",
+                "engine_version": "2.0.936",
+                "engine_update": "20251216",
+                "category": "type-unsupported",
+                "result": null
+              },
+              "DeepInstinct": {
+                "method": "blacklist",
+                "engine_name": "DeepInstinct",
+                "engine_version": "5.0.0.8",
+                "engine_update": "20260104",
+                "category": "type-unsupported",
+                "result": null
+              },
+              "tehtris": {
+                "method": "blacklist",
+                "engine_name": "tehtris",
+                "engine_version": null,
+                "engine_update": "20260107",
+                "category": "type-unsupported",
+                "result": null
+              },
+              "Trapmine": {
+                "method": "blacklist",
+                "engine_name": "Trapmine",
+                "engine_version": "4.0.8.0",
+                "engine_update": "20260103",
+                "category": "type-unsupported",
+                "result": null
+              },
+              "Paloalto": {
+                "method": "blacklist",
+                "engine_name": "Paloalto",
+                "engine_version": "0.9.0.1003",
+                "engine_update": "20260107",
+                "category": "type-unsupported",
+                "result": null
+              },
+              "Cylance": {
+                "method": "blacklist",
+                "engine_name": "Cylance",
+                "engine_version": "3.0.0.0",
+                "engine_update": "20260105",
+                "category": "type-unsupported",
+                "result": null
+              },
+              "Trustlook": {
+                "method": "blacklist",
+                "engine_name": "Trustlook",
+                "engine_version": "1.0",
+                "engine_update": "20260107",
+                "category": "type-unsupported",
+                "result": null
+              }
+            },
+            "total_votes": {
+              "harmless": 89,
+              "malicious": 25
+            },
+            "first_seen_itw_date": 1582031746,
+            "crowdsourced_yara_results": [
+              {
+                "ruleset_id": "0019ab4291",
+                "rule_name": "malw_eicar",
+                "ruleset_name": "MALW_Eicar",
+                "description": "Rule to detect the EICAR pattern",
+                "author": "Marc Rivero | McAfee ATR Team",
+                "match_date": 1767804940,
+                "ruleset_version": "0019ab4291|fc51a3fe3b450838614a5a5aa327c6bd8689cbb2",
+                "source": "https://github.com/advanced-threat-research/Yara-Rules"
+              },
+              {
+                "ruleset_id": "015dce072d",
+                "rule_name": "Multi_EICAR_ac8f42d6",
+                "ruleset_name": "Multi_EICAR",
+                "author": "Elastic Security",
+                "match_date": 1767804940,
+                "ruleset_version": "015dce072d|195c9611ddb90db599d7ffc1a9b0e8c45688007d",
+                "source": "https://github.com/elastic/protections-artifacts"
+              },
+              {
+                "ruleset_id": "000720c1f3",
+                "rule_name": "SUSP_Just_EICAR",
+                "ruleset_name": "gen_suspicious_strings",
+                "description": "Just an EICAR test file - this is boring but users asked for it",
+                "author": "Florian Roth (Nextron Systems)",
+                "match_date": 1767804940,
+                "ruleset_version": "000720c1f3|fcd62734f98eab177e4970751fd1cc901bc8654e",
+                "source": "https://github.com/Neo23x0/signature-base"
+              }
+            ],
+            "tlsh": "T1E6A022003B0EEE2BA20B00200032E8B00808020F2CE00A3820A020B8C83308803EC228",
+            "crowdsourced_ids_results": [
+              {
+                "rule_category": "protocol-command-decode",
+                "alert_severity": "low",
+                "rule_msg": "(tcp) experimental TCP options found",
+                "rule_id": "116:58",
+                "rule_source": "Snort registered user ruleset",
+                "rule_url": "https://www.snort.org/downloads/#rule-downloads",
+                "rule_raw": "alert ( gid:116; sid:58; rev:2; msg:\"(tcp) experimental TCP options found\"; metadata: policy max-detect-ips drop, rule-type decode; classtype:protocol-command-decode;)",
+                "alert_context": [
+                  {
+                    "src_ip": "8.8.8.8",
+                    "src_port": 53
+                  }
+                ]
+              }
+            ],
+            "sha1": "cf8bd9dfddff007f75adf4c2be48005cea317c62",
+            "unique_sources": 3374,
+            "first_submission_date": 1148405181,
+            "ssdeep": "3:a+JraNvsgzsVqSwHqN:tJuOgzsky"
+          }
+        }
+      }
+    },
+    {
+      "id": "c710f834-2b51-4c85-911e-1a6956a69f9c",
+      "timestamp": "2026-01-07T17:33:32.112Z",
+      "type": "WEB_MONITOR",
+      "target": "http://localhost:5173",
+      "status": "WARNING",
+      "details": "2 security headers missing"
+    },
+    {
+      "id": "547c3ec1-edae-45e0-bcde-2a2131f31936",
+      "timestamp": "2026-01-07T17:33:29.786Z",
+      "type": "WEB_MONITOR",
+      "target": "http://localhost:5172",
+      "status": "ERROR",
+      "details": "connect ECONNREFUSED 127.0.0.1:5172"
+    },
+    {
+      "id": "2524cfdd-70a4-49e2-af6a-6b867de19e96",
+      "timestamp": "2026-01-07T17:32:59.631Z",
+      "type": "WEB_MONITOR",
+      "target": "http://localhost:5173",
+      "status": "WARNING",
+      "details": "2 security headers missing"
+    }
+  ],
+  "quarantine": []
+}
