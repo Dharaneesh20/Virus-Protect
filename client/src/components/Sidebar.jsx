@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaHome, FaShieldAlt, FaFolderOpen, FaGlobe, FaHistory, FaExclamationTriangle } from 'react-icons/fa';
+import { FaHome, FaShieldAlt, FaFolderOpen, FaGlobe, FaHistory, FaExclamationTriangle, FaChartBar } from 'react-icons/fa';
 
 const Sidebar = () => {
     const navItems = [
@@ -8,6 +8,7 @@ const Sidebar = () => {
         { to: '/scan-file', icon: FaShieldAlt, label: 'FILE SCAN' },
         { to: '/scan-project', icon: FaFolderOpen, label: 'PROJECT SCAN' },
         { to: '/monitor-web', icon: FaGlobe, label: 'WEB MONITOR' },
+        { to: '/reports', icon: FaChartBar, label: 'REPORTS' },
         { to: '/history', icon: FaHistory, label: 'HISTORY' },
         { to: '/quarantine', icon: FaExclamationTriangle, label: 'QUARANTINE' },
     ];
