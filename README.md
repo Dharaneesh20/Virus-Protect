@@ -173,7 +173,7 @@ This project is made possible by these amazing contributors:
             <sub><b>Dharaneesh20</b></sub>
         </a>
         <br />
-        <sub>Project Lead & Core Developer</sub>
+        <sub>Core Developer</sub>
     </td>
     <td align="center">
         <a href="https://github.com/deepan-crypto">
