@@ -21,23 +21,48 @@
 ## 📸 Screenshots
 
 <div align="center">
-
-<img src="https://i.ibb.co/Rp3KcBNn/Screenshot-from-2026-01-08-00-15-23.png" alt="Dashboard Overview" width="800"/>
-
-<img src="https://i.ibb.co/twwwqzKP/Screenshot-from-2026-01-08-00-15-32.png" alt="File Scanning Interface" width="800"/>
-
-<img src="https://i.ibb.co/1GWv3YW7/Screenshot-from-2026-01-08-00-16-11.png" alt="Scan Results" width="800"/>
-
-<img src="https://i.ibb.co/JFmkrFrB/Screenshot-from-2026-01-08-00-16-16.png" alt="AI Threat Analysis" width="800"/>
-
-<img src="https://i.ibb.co/jPB98vqL/Screenshot-from-2026-01-08-00-17-01.png" alt="Secret Detection" width="800"/>
-
-<img src="https://i.ibb.co/JFF40cjF/Screenshot-from-2026-01-08-00-17-31.png" alt="Web Monitoring" width="800"/>
-
-<img src="https://i.ibb.co/zWrbGCrz/Screenshot-from-2026-01-08-00-17-38.png" alt="Security Analysis" width="800"/>
-
-<img src="https://i.ibb.co/r2DtN60c/Screenshot-from-2026-01-08-00-20-10.png" alt="Quarantine Management" width="800"/>
-
+<table>
+<tr>
+<td width="50%">
+<img src="https://i.ibb.co/Rp3KcBNn/Screenshot-from-2026-01-08-00-15-23.png" alt="Dashboard Overview" width="100%"/>
+<p><b>Dashboard Overview</b></p>
+</td>
+<td width="50%">
+<img src="https://i.ibb.co/twwwqzKP/Screenshot-from-2026-01-08-00-15-32.png" alt="File Scanning Interface" width="100%"/>
+<p><b>File Scanning Interface</b></p>
+</td>
+</tr>
+<tr>
+<td width="50%">
+<img src="https://i.ibb.co/1GWv3YW7/Screenshot-from-2026-01-08-00-16-11.png" alt="Scan Results" width="100%"/>
+<p><b>Scan Results</b></p>
+</td>
+<td width="50%">
+<img src="https://i.ibb.co/JFmkrFrB/Screenshot-from-2026-01-08-00-16-16.png" alt="AI Threat Analysis" width="100%"/>
+<p><b>AI Threat Analysis</b></p>
+</td>
+</tr>
+<tr>
+<td width="50%">
+<img src="https://i.ibb.co/jPB98vqL/Screenshot-from-2026-01-08-00-17-01.png" alt="Secret Detection" width="100%"/>
+<p><b>Secret Detection</b></p>
+</td>
+<td width="50%">
+<img src="https://i.ibb.co/JFF40cjF/Screenshot-from-2026-01-08-00-17-31.png" alt="Web Monitoring" width="100%"/>
+<p><b>Web Monitoring</b></p>
+</td>
+</tr>
+<tr>
+<td width="50%">
+<img src="https://i.ibb.co/zWrbGCrz/Screenshot-from-2026-01-08-00-17-38.png" alt="Security Analysis" width="100%"/>
+<p><b>Security Analysis</b></p>
+</td>
+<td width="50%">
+<img src="https://i.ibb.co/r2DtN60c/Screenshot-from-2026-01-08-00-20-10.png" alt="Quarantine Management" width="100%"/>
+<p><b>Quarantine Management</b></p>
+</td>
+</tr>
+</table>
 </div>
 
 ---
@@ -136,6 +161,35 @@ Virus-Protect/
 ├── LICENSE
 └── README.md
 ```
+👥 Collaborators
+This project is made possible by these amazing contributors:
+<div align="center">
+<table>
+<tr>
+    <td align="center">
+        <a href="https://github.com/Dharaneesh20">
+            <img src="https://github.com/Dharaneesh20.png" width="100px;" alt="Dharaneesh20"/>
+            <br />
+            <sub><b>Dharaneesh20</b></sub>
+        </a>
+        <br />
+        <sub>Project Lead & Core Developer</sub>
+    </td>
+    <!-- Add more collaborators here -->
+    <!-- Example template:
+    <td align="center">
+        <a href="https://github.com/USERNAME">
+            <img src="https://github.com/USERNAME.png" width="100px;" alt="USERNAME"/>
+            <br />
+            <sub><b>Display Name</b></sub>
+        </a>
+        <br />
+        <sub>Role/Contribution</sub>
+    </td>
+    -->
+</tr>
+</table>
+</div>
 
 ---
 
