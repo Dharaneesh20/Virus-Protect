@@ -175,6 +175,15 @@ This project is made possible by these amazing contributors:
         <br />
         <sub>Project Lead & Core Developer</sub>
     </td>
+    <td align="center">
+        <a href="https://github.com/deepan-crypto">
+            <img src="https://github.com/deepan-crypto.png" width="100px;" alt="deepan-crypto"/>
+            <br />
+            <sub><b>deepan-crypto</b></sub>
+        </a>
+        <br />
+        <sub>Contributor</sub>
+    </td>
     <!-- Add more collaborators here -->
     <!-- Example template:
     <td align="center">
