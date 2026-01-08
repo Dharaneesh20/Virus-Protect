@@ -8,6 +8,19 @@ const fs = require('fs');
 const crypto = require('crypto');
 const path = require('path');
 
+// Report generation dependencies (install with: npm install pdfkit node-cron moment fs-extra)
+let PDFDocument, cron, moment, fsExtra;
+try {
+    PDFDocument = require('pdfkit');
+    cron = require('node-cron');
+    moment = require('moment');
+    fsExtra = require('fs-extra');
+    console.log('Report generation dependencies loaded successfully');
+} catch (e) {
+    console.log('Report generation dependencies not installed. Some features will be limited.');
+    console.log('Run: npm install pdfkit node-cron moment fs-extra');
+}
+
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -95,6 +108,138 @@ const scanForSecrets = (filePath) => {
     } catch (e) {
         return [];
     }
+};
+
+// --- REPORT GENERATION HELPERS ---
+
+const REPORTS_DIR = path.join(__dirname, 'reports');
+if (!fs.existsSync(REPORTS_DIR)) fs.mkdirSync(REPORTS_DIR);
+
+const generateSecurityReport = (data, type = 'daily') => {
+    const db = readDB();
+    const now = moment || { format: () => new Date().toISOString().split('T')[0] };
+    const reportData = {
+        generatedAt: new Date().toISOString(),
+        type: type,
+        period: type === 'daily' ? (moment ? moment().format('YYYY-MM-DD') : new Date().toISOString().split('T')[0]) : 
+                type === 'weekly' ? 'Current Week' :
+                'Current Month',
+        summary: {
+            totalScans: db.history.length,
+            threatsFound: db.history.filter(h => h.status === 'THREAT').length,
+            safeScans: db.history.filter(h => h.status === 'SAFE').length,
+            quarantinedFiles: db.quarantine.length,
+            webMonitors: db.history.filter(h => h.type === 'WEB_MONITOR').length
+        },
+        recentActivity: db.history.slice(0, 10),
+        quarantineSummary: db.quarantine.slice(0, 5),
+        threatBreakdown: {
+            byType: db.history.reduce((acc, h) => {
+                acc[h.type] = (acc[h.type] || 0) + 1;
+                return acc;
+            }, {}),
+            byStatus: db.history.reduce((acc, h) => {
+                acc[h.status] = (acc[h.status] || 0) + 1;
+                return acc;
+            }, {})
+        }
+    };
+    return reportData;
+};
+
+const generatePDFReport = (reportData) => {
+    if (!PDFDocument) {
+        throw new Error('PDFKit not installed. Run: npm install pdfkit');
+    }
+
+    return new Promise((resolve, reject) => {
+        const doc = new PDFDocument();
+        const buffers = [];
+        
+        doc.on('data', buffers.push.bind(buffers));
+        doc.on('end', () => {
+            const pdfData = Buffer.concat(buffers);
+            resolve(pdfData);
+        });
+        doc.on('error', reject);
+
+        // Header
+        doc.fontSize(20).text('VIRUS-PROTECT SECURITY REPORT', { align: 'center' });
+        doc.moveDown();
+        doc.fontSize(12).text(`Generated: ${reportData.generatedAt}`, { align: 'center' });
+        doc.text(`Period: ${reportData.period}`, { align: 'center' });
+        doc.moveDown(2);
+
+        // Summary
+        doc.fontSize(16).text('EXECUTIVE SUMMARY');
+        doc.moveDown();
+        doc.fontSize(10);
+        doc.text(`Total Scans: ${reportData.summary.totalScans}`);
+        doc.text(`Threats Detected: ${reportData.summary.threatsFound}`);
+        doc.text(`Safe Scans: ${reportData.summary.safeScans}`);
+        doc.text(`Quarantined Files: ${reportData.summary.quarantinedFiles}`);
+        doc.text(`Web Monitors: ${reportData.summary.webMonitors}`);
+        doc.moveDown();
+
+        // Threat Breakdown
+        doc.fontSize(14).text('THREAT BREAKDOWN');
+        doc.moveDown();
+        doc.fontSize(10);
+        doc.text('By Type:');
+        Object.entries(reportData.threatBreakdown.byType).forEach(([type, count]) => {
+            doc.text(`  ${type}: ${count}`);
+        });
+        doc.moveDown();
+        doc.text('By Status:');
+        Object.entries(reportData.threatBreakdown.byStatus).forEach(([status, count]) => {
+            doc.text(`  ${status}: ${count}`);
+        });
+        doc.moveDown();
+
+        // Recent Activity
+        doc.fontSize(14).text('RECENT ACTIVITY');
+        doc.moveDown();
+        doc.fontSize(8);
+        reportData.recentActivity.forEach(activity => {
+            doc.text(`${activity.timestamp.split('T')[0]} - ${activity.type}: ${activity.target} (${activity.status})`);
+        });
+
+        doc.end();
+    });
+};
+
+const generateCSVReport = (reportData) => {
+    const csv = [
+        'Date,Type,Target,Status,Details',
+        ...reportData.recentActivity.map(activity => 
+            `${activity.timestamp.split('T')[0]},${activity.type},${activity.target},${activity.status},"${activity.details || ''}"`
+        )
+    ].join('\n');
+    return csv;
+};
+
+const saveReport = async (reportData, format = 'json') => {
+    const timestamp = moment ? moment().format('YYYY-MM-DD_HH-mm-ss') : new Date().toISOString().replace(/[:.]/g, '-').replace('T', '_').split('.')[0];
+    const filename = `security-report-${reportData.type}-${timestamp}.${format}`;
+    const filepath = path.join(REPORTS_DIR, filename);
+
+    let content;
+    switch (format) {
+        case 'pdf':
+            if (!PDFDocument) {
+                throw new Error('PDF generation requires pdfkit. Run: npm install pdfkit');
+            }
+            content = await generatePDFReport(reportData);
+            break;
+        case 'csv':
+            content = generateCSVReport(reportData);
+            break;
+        default:
+            content = JSON.stringify(reportData, null, 2);
+    }
+
+    fs.writeFileSync(filepath, content);
+    return { filename, filepath, size: content.length };
 };
 
 // --- ROUTES ---
@@ -414,6 +559,144 @@ app.post('/api/monitor/url', async (req, res) => {
         res.status(500).json({ error: 'Failed to monitor URL', details: error.message });
     }
 });
+
+// --- REPORT GENERATION ENDPOINTS ---
+
+app.get('/api/reports', (req, res) => {
+    try {
+        if (!fs.existsSync(REPORTS_DIR)) {
+            return res.json({ reports: [] });
+        }
+        
+        const files = fs.readdirSync(REPORTS_DIR)
+            .filter(file => file.endsWith('.json') || file.endsWith('.pdf') || file.endsWith('.csv'))
+            .map(file => {
+                const filepath = path.join(REPORTS_DIR, file);
+                const stats = fs.statSync(filepath);
+                return {
+                    filename: file,
+                    size: stats.size,
+                    created: stats.birthtime,
+                    format: file.split('.').pop()
+                };
+            })
+            .sort((a, b) => new Date(b.created) - new Date(a.created));
+        
+        res.json({ reports: files });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to list reports', details: error.message });
+    }
+});
+
+app.post('/api/reports/generate', async (req, res) => {
+    try {
+        const { type = 'daily', format = 'json' } = req.body;
+        
+        if (!['daily', 'weekly', 'monthly'].includes(type)) {
+            return res.status(400).json({ error: 'Invalid report type. Use: daily, weekly, monthly' });
+        }
+        
+        if (!['json', 'pdf', 'csv'].includes(format)) {
+            return res.status(400).json({ error: 'Invalid format. Use: json, pdf, csv' });
+        }
+        
+        const reportData = generateSecurityReport(null, type);
+        const result = await saveReport(reportData, format);
+        
+        res.json({
+            message: 'Report generated successfully',
+            report: result,
+            downloadUrl: `/api/reports/download/${result.filename}`
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to generate report', details: error.message });
+    }
+});
+
+app.get('/api/reports/download/:filename', (req, res) => {
+    try {
+        const filename = req.params.filename;
+        const filepath = path.join(REPORTS_DIR, filename);
+        
+        if (!fs.existsSync(filepath)) {
+            return res.status(404).json({ error: 'Report not found' });
+        }
+        
+        const ext = path.extname(filename).toLowerCase();
+        let contentType = 'application/octet-stream';
+        
+        if (ext === '.json') contentType = 'application/json';
+        else if (ext === '.pdf') contentType = 'application/pdf';
+        else if (ext === '.csv') contentType = 'text/csv';
+        
+        res.setHeader('Content-Type', contentType);
+        res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+        
+        const fileStream = fs.createReadStream(filepath);
+        fileStream.pipe(res);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to download report', details: error.message });
+    }
+});
+
+app.delete('/api/reports/:filename', (req, res) => {
+    try {
+        const filename = req.params.filename;
+        const filepath = path.join(REPORTS_DIR, filename);
+        
+        if (!fs.existsSync(filepath)) {
+            return res.status(404).json({ error: 'Report not found' });
+        }
+        
+        fs.unlinkSync(filepath);
+        res.json({ message: 'Report deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to delete report', details: error.message });
+    }
+});
+
+// Schedule automated report generation
+if (cron) {
+    // Daily report at 6 AM
+    cron.schedule('0 6 * * *', async () => {
+        try {
+            console.log('Generating daily security report...');
+            const reportData = generateSecurityReport(null, 'daily');
+            await saveReport(reportData, 'json');
+            console.log('Daily report generated successfully');
+        } catch (error) {
+            console.error('Failed to generate daily report:', error.message);
+        }
+    });
+    
+    // Weekly report every Monday at 6 AM
+    cron.schedule('0 6 * * 1', async () => {
+        try {
+            console.log('Generating weekly security report...');
+            const reportData = generateSecurityReport(null, 'weekly');
+            await saveReport(reportData, 'json');
+            console.log('Weekly report generated successfully');
+        } catch (error) {
+            console.error('Failed to generate weekly report:', error.message);
+        }
+    });
+    
+    // Monthly report on the 1st at 6 AM
+    cron.schedule('0 6 1 * *', async () => {
+        try {
+            console.log('Generating monthly security report...');
+            const reportData = generateSecurityReport(null, 'monthly');
+            await saveReport(reportData, 'json');
+            console.log('Monthly report generated successfully');
+        } catch (error) {
+            console.error('Failed to generate monthly report:', error.message);
+        }
+    });
+    
+    console.log('Automated report scheduling enabled');
+} else {
+    console.log('Node-cron not installed. Automated reports disabled. Install with: npm install node-cron');
+}
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

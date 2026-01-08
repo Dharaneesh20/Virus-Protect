@@ -7,6 +7,7 @@ import ScanProjectPage from './pages/ScanProjectPage';
 import WebMonitorPage from './pages/WebMonitorPage';
 import HistoryPage from './pages/HistoryPage';
 import QuarantinePage from './pages/QuarantinePage';
+import ReportsPage from './pages/ReportsPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="monitor-web" element={<WebMonitorPage />} />
         <Route path="history" element={<HistoryPage />} />
         <Route path="quarantine" element={<QuarantinePage />} />
+        <Route path="reports" element={<ReportsPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
