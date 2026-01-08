@@ -387,48 +387,6 @@ VirusProtect is an open-source initiative, and we welcome contributions from the
    ```
 6. **Open a Pull Request** on the main repository
 
-### Contribution Ideas
-
-**High Priority:**
-- 🔍 Add more regex patterns for secret detection (Azure, GitHub tokens, JWT)
-- 🧪 Implement unit and integration tests
-- 🐳 Create Docker/Docker Compose setup
-- 📊 Add vulnerability severity scoring system
-- 🔐 Implement file encryption for quarantined items
-
-**Medium Priority:**
-- 🌐 Network traffic analyzer module
-- 📱 Progressive Web App (PWA) support
-- 🔔 Real-time notifications for scan results
-- 📈 Analytics dashboard with charts
-- 🗄️ PostgreSQL/MongoDB support option
-
-**Enhancement Ideas:**
-- Support for scanning compressed archives (ZIP, TAR)
-- Integration with more threat intelligence APIs
-- Dark/Light theme toggle
-- Export reports as PDF
-- Multi-language support
-
-### Code Style Guidelines
-- Use ESLint configuration provided
-- Follow React best practices
-- Write descriptive commit messages
-- Add comments for complex logic
-- Update documentation for new features
-
----
-
-## 📊 Project Stats
-
-- **Language:** JavaScript (React + Node.js)
-- **Frontend Framework:** React 19.2 + Vite
-- **Backend:** Express.js 5.2
-- **Database:** JSON-based (local)
-- **CI/CD:** GitHub Actions
-- **License:** MIT
-- **Active Development:** ✅ Yes
-
 ---
 
 
